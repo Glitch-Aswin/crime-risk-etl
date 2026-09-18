@@ -156,8 +156,17 @@ Still needed: population/census data (for rate-per-100k), not yet pulled.
       9 unit tests passing (`tests/test_extract.py`, `tests/test_transform.py`).
       Still open: the state-wise reconciliation QA check (Phase 4/5), and
       YoY/rolling-average feature engineering (Phase 4).
-- [ ] **Phase 4 — Feature engineering**: implement `features/build_features.py`
-      — YoY change, 3-year rolling average, in-state rank.
+- [x] **Phase 4 — Feature engineering**: implemented `features/build_features.py`
+      on top of the population-joined tidy table from Phase 3 —
+      `compute_yoy_change` (% change per district-crime_category, first
+      year NaN), `compute_rolling_average` (trailing window, min_periods=1
+      so early years still get a value), `compute_in_state_rank` (rank
+      within state+year+crime_category, 1 = highest rate = riskiest —
+      state-relative per the Decisions log, not national). `build_features()`
+      composes all three. Verified nulls propagate correctly end-to-end:
+      the ~18% of districts with no population match (Phase 3) get NaN for
+      rate/YoY/rolling/rank rather than a crash or a fabricated value.
+      4 unit tests added (`tests/test_build_features.py`), 13 total passing.
 - [ ] **Phase 5 — Inference**: implement `inference/rule_based.py` (quantile
       tiers) first, validate output, then `inference/clustering.py` (k-means),
       remembering to sort cluster centroids by mean rate before mapping to
