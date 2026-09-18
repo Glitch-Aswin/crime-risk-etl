@@ -73,6 +73,9 @@ Still needed: population/census data (for rate-per-100k), not yet pulled.
 
 ## Decisions log
 
+- **uv** for dependency/env management, not pip — `pyproject.toml` + `uv.lock`
+  are the source of truth; use `uv add <pkg>` to add dependencies and
+  `uv run <cmd>` to execute within the project's environment.
 - **DuckDB + Python**, not Databricks/Spark — dataset is ~12K rows, fits
   comfortably in memory; Spark would hide the ETL mechanics we're trying to
   practice. May add a small Databricks Community Edition "cloud deployment"
@@ -96,18 +99,37 @@ Still needed: population/census data (for rate-per-100k), not yet pulled.
 
 - [x] **Phase 0 — Setup**: repo created, raw data sourced and committed,
       folder scaffolding in place (this commit).
-- [ ] **Phase 1 — Reference data**: read the 4 codebooks and build out
-      `reference/crime_category_map.csv` in full (currently has only a
-      handful of example rows). Build out `reference/district_crosswalk.csv`
-      beyond the one confirmed example — verify whether `district_code` is
-      reliably stable across *all* rows/years or if more exceptions exist.
-      Source and add population/census data per district-year.
-- [ ] **Phase 2 — Extract**: implement `etl/extract.py` to load raw CSVs
-      (and later, pull live from the data.gov.in API instead of static files).
-- [ ] **Phase 3 — Transform**: implement `etl/transform.py` — reshape to
-      long format, apply category map and district crosswalk, join
-      population, compute rate_per_100k. Validate: aggregated district
-      counts should reconcile with any available state-wise totals.
+- [x] **Phase 1 — Reference data** (women dataset only): read both women
+      codebooks (2016, 2017-onwards) and built out
+      `reference/crime_category_map.csv` in full — 19 canonical categories
+      for 2016, mapped alongside the finer 2017+ split (e.g.
+      `rape_women_above_18` + `rape_girls_below_18` -> `rape`). Built
+      `reference/district_crosswalk.csv` programmatically from the raw data
+      (754 districts): 70 codes new post-2017, 24 spelling changes across
+      eras, 3 codes with >1 name even within the 2017+ era alone, 3 codes
+      only in 2016. `district_code` confirmed as the stable join key.
+      Still open: population/census data per district-year (needed for
+      rate_per_100k in Phase 4), and the equivalent reference data for IPC
+      crimes (larger schema-drift problem, 130+ columns in 2017+).
+- [x] **Phase 2 — Extract**: `etl/extract.py` implemented — loads the two
+      women-crimes CSVs, drops the row-id column, tags each with an `era`.
+      Kept as separate wide dataframes per era (not concatenated) since
+      concatenating before reshaping would fabricate
+      (source_column, era) pairs via NaN-filling — reshape happens
+      per-era in transform.py instead. Still using static local CSVs, not
+      yet pulling live from the data.gov.in API.
+- [x] **Phase 3 — Transform** (women dataset only): `etl/transform.py`
+      implemented — `reshape_to_long`, `normalize_districts` (crosswalk
+      join on district_code, falls back to raw name if code unmatched),
+      `normalize_crime_categories` (maps + sums subcategories to canonical
+      categories, raises loudly on any unmapped source_column/era pair).
+      Verified against raw data: district 502 (Ananthapuramu) 2017 rape =
+      43, correctly summed across *two* registration_circles rows plus the
+      age-split rape columns — confirms aggregation handles the
+      multi-row-per-district-year case, not just the multi-column case.
+      7 unit tests passing (`tests/test_extract.py`, `tests/test_transform.py`).
+      Still open: population join + rate_per_100k (moved to Phase 4), and
+      the state-wise reconciliation QA check.
 - [ ] **Phase 4 — Feature engineering**: implement `features/build_features.py`
       — YoY change, 3-year rolling average, in-state rank.
 - [ ] **Phase 5 — Inference**: implement `inference/rule_based.py` (quantile
