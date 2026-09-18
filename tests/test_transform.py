@@ -2,6 +2,7 @@ import pandas as pd
 import pytest
 
 from etl.transform import (
+    combine_datasets,
     join_population,
     normalize_crime_categories,
     normalize_districts,
@@ -104,3 +105,27 @@ def test_normalize_crime_categories_raises_on_unmapped_column():
     )
     with pytest.raises(ValueError, match="no entry in crime_category_map"):
         normalize_crime_categories(df, category_map)
+
+
+def test_combine_datasets_tags_and_keeps_overlapping_categories_separate():
+    women = pd.DataFrame(
+        {
+            "district_code": ["502"],
+            "year": [2017],
+            "crime_category": ["rape"],
+            "count": [43],
+        }
+    )
+    ipc = pd.DataFrame(
+        {
+            "district_code": ["502"],
+            "year": [2017],
+            "crime_category": ["rape"],
+            "count": [43],
+        }
+    )
+    out = combine_datasets(women, ipc)
+    assert len(out) == 2
+    assert set(out["dataset"]) == {"women", "ipc"}
+    # both rows preserved independently, not summed together
+    assert out["count"].tolist() == [43, 43]

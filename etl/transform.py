@@ -116,3 +116,19 @@ def join_population(df: pd.DataFrame, population: pd.DataFrame) -> pd.DataFrame:
     )
     out["rate_per_100k"] = (out["count"] / out["population_2011"]) * 100_000
     return out
+
+
+def combine_datasets(women_df: pd.DataFrame, ipc_df: pd.DataFrame) -> pd.DataFrame:
+    """Concat the already-normalized women and IPC tidy tables into one,
+    tagged with a `dataset` column ('women' | 'ipc'). Several canonical
+    categories (rape, dowry_deaths, human_trafficking, assault_on_women,
+    cruelty_by_husband_relatives, insult_to_modesty, and others) exist in
+    both source tables as genuinely distinct NCRB statistics -- tagging
+    before concatenation, rather than after, keeps normalize_crime_categories
+    from ever seeing both datasets' rows in the same groupby and silently
+    summing them together."""
+    women = women_df.copy()
+    women["dataset"] = "women"
+    ipc = ipc_df.copy()
+    ipc["dataset"] = "ipc"
+    return pd.concat([women, ipc], ignore_index=True)

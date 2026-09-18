@@ -23,10 +23,11 @@ overlapping crime categories (e.g. `rape`, `dowry_deaths`, which exist in
 both source tables) don't get double-counted when combined later.
 
 **Split of work**: Phases 1-4 (reference data, extract, transform,
-features) for both datasets are done here. **Phase 5 (inference) and
-Phase 6 (load) are intentionally left unimplemented** for a teammate to
-build — do not extend past Phase 4 in this part of the repo without
-checking first.
+features) for both datasets were built first. Phase 5 (inference) and
+Phase 6 (load) were originally left for a teammate to build, but that
+plan changed — **Phases 5 and 6 are now also implemented** (see Phase
+plan below), so the whole pipeline (`uv run python -m etl.pipeline`)
+runs end to end.
 
 Full project brief (background/rationale): `docs/district_crime_risk_tiering.pdf`
 
@@ -43,8 +44,8 @@ Full project brief (background/rationale): `docs/district_crime_risk_tiering.pdf
 5. Load      -> DuckDB warehouse (star schema, see warehouse/schema.sql)
 ```
 
-Entry point (not yet built — steps 4-5 are stubs, see "Not yet done"):
-`uv run python -m etl.pipeline`
+Entry point: `uv run python -m etl.pipeline` — runs all five steps and
+writes `fact_crime` + `fact_crime_risk` to `warehouse/crime_risk.duckdb`.
 
 ## Repo layout
 
@@ -107,9 +108,22 @@ district codes don't align with NCRB's).
 - **Two tiering methods stored side by side** (`method` column in
   `fact_crime_risk`: `quantile` vs `kmeans`) rather than picking one, so
   results can be compared rather than committing early.
-- Tiers computed **state-relative**, not on a national scale — baseline
-  crime rates vary structurally by state, so comparing a district only
-  against others in its own state is more defensible.
+- Tiers computed **state-relative**, not on a national scale, for the
+  quantile method — baseline crime rates vary structurally by state, so
+  comparing a district only against others in its own state is more
+  defensible. The k-means method is the deliberate exception: it clusters
+  nationally per dataset+crime_category+year, since most individual
+  states don't have enough districts in a single year to fit 3 clusters
+  meaningfully. The two methods being differently scoped (state-relative
+  vs. national) is intentional, not an inconsistency to fix.
+- **Natural keys over surrogate IDs** in the warehouse
+  (`warehouse/schema.sql`): `district_code`/`crime_category`/`dataset`
+  directly on `fact_crime`/`fact_crime_risk`, no `dim_district`/
+  `dim_crime_type` tables. Dropped the original Phase 0 surrogate-ID
+  design once Phase 5/6 were actually built — at ~12K source rows /
+  ~310K post-feature rows, ID-generation bookkeeping didn't earn its
+  keep, and those columns are already the stable join keys everywhere
+  else in the pipeline.
 
 ## Phase plan
 
@@ -218,30 +232,67 @@ district codes don't align with NCRB's).
       datasets' tidy frames, same as `etl/extract.py`'s loaders already
       tag each raw frame by `era`.
 
-## Not yet done — intentionally stopped here
+- [x] **Phase 5 — Inference**: `etl/transform.py::combine_datasets()`
+      concats the women and IPC tidy tables and tags each row `dataset`
+      ('women' | 'ipc') *before* concatenation, so the categories that
+      genuinely overlap between the two source tables (confirmed via the
+      category map: `rape`, `attempt_to_commit_rape`,
+      `kidnapping_and_abduction`, `dowry_deaths`, `human_trafficking`,
+      `assault_on_women`, `cruelty_by_husband_relatives`,
+      `insult_to_modesty`, `abetment_of_suicide`, `acid_attack`,
+      `attempt_acid_attack`, `unnatural_offences` — 12 categories, more
+      than the original estimate in the Phase 1(b) note above) never get
+      silently summed together. Verified: district 502/2017/rape = 43 in
+      both `women` and `ipc` rows independently, not 86.
 
-**Phase 5 (Inference) and Phase 6 (Load) are not implemented.**
-`inference/rule_based.py`, `inference/clustering.py`, `etl/load.py`, and
-`etl/pipeline.py` are still the original stub files from Phase 0
-scaffolding (`raise NotImplementedError`). This is deliberate — Phases
-1-4 (reference data, extract, transform, features) are done and tested
-for both the women and IPC datasets; inference and load are left for a
-teammate to build from here rather than being finished in this pass.
+      `inference/rule_based.py::assign_quantile_tier()` — tertile split
+      via percentile rank (not `pd.qcut`, which raises on duplicate bin
+      edges — common in small or homogeneous state+year+category groups)
+      within state+year+crime_category+dataset, state-relative per the
+      Decisions log. `inference/clustering.py::assign_kmeans_tier()` —
+      k-means (k=3, scaled features) fit per dataset+crime_category+year
+      (not state-relative like quantile — most states don't have enough
+      districts in a single year to fit 3 meaningful clusters; comparing
+      a national clustering method against a state-relative rule-based
+      one is itself part of the point of keeping both). Centroids ranked
+      by the primary feature (`rate_per_100k`) and mapped to
+      Low/Medium/High so labels stay comparable across groups. Both
+      methods null out `tier` rather than guess: quantile for missing
+      `rate_per_100k`, kmeans for any non-finite feature value (notably
+      `yoy_change_pct` is `+inf` when the prior year's rate was exactly
+      0) or a group too small to form k clusters.
+      `config/settings.yaml`'s `tiering.min_population` (100,000) is now
+      applied in `etl/pipeline.py` before either method runs — rows for
+      districts below that population are left untiered, since a small
+      denominator makes `rate_per_100k` too volatile to tier meaningfully.
+      Tests: `tests/test_rule_based.py`, `tests/test_clustering.py`.
+- [x] **Phase 6 — Load**: `etl/load.py::load_to_warehouse()` writes a
+      dataframe into DuckDB (`CREATE OR REPLACE TABLE ... AS SELECT`),
+      applying `warehouse/schema.sql` first so it's safe against a
+      missing/fresh `.duckdb` file. **`warehouse/schema.sql` was
+      rewritten**: dropped the original `dim_district`/`dim_crime_type`
+      surrogate-ID dimension tables in favor of natural keys
+      (`district_code`, `crime_category`, `dataset`) directly on
+      `fact_crime` and `fact_crime_risk` — the dataset is small (~12K
+      rows pre-features, ~310K post-melt across both crime tables) and
+      those columns are already the stable keys threaded through the
+      whole pipeline, so surrogate-ID generation would add bookkeeping
+      without buying anything at this scale. `fact_crime_risk` now also
+      carries a `dataset` column. `etl/pipeline.py::run()` is the actual
+      entrypoint: builds the women and IPC tidy tables independently,
+      combines + tags them, runs `build_features`, filters by
+      `min_population`, runs both tiering methods, and writes
+      `fact_crime` + `fact_crime_risk`. Verified end to end against the
+      real raw data: 311,891 `fact_crime` rows (93,974 women + 217,917
+      IPC), 512,650 `fact_crime_risk` rows (256,325 per method). Tests:
+      `tests/test_load.py`, plus `tests/test_transform.py`'s new
+      `combine_datasets` coverage. 26 tests passing total.
 
-What Phase 5/6 will need, based on what Phase 1-4 already produces:
-- The output of `features/build_features.py` has: `district_code`,
-  `canonical_district_name`, `state_name`, `year`, `crime_category`,
-  `count`, `population_2011`, `rate_per_100k`, `yoy_change_pct`,
-  `rolling_3yr_avg`, `in_state_rank` — no `dataset` column yet, since
-  women and IPC haven't been combined into one table anywhere in the
-  current code. That combining + tagging step is part of what's left.
-- `warehouse/schema.sql` still reflects the original Phase 0 design
-  (surrogate integer IDs, no `dataset` column, women-only assumption) —
-  worth revisiting once the combined-table shape is decided, not
-  necessarily taking it as fixed.
-- Tiering design (quantile tertiles + k-means, `method`/`tier`/`score`
-  columns, state-relative not national) was discussed and is documented
-  in the Decisions log above, but no code for it exists yet.
+      Note: `uv` wasn't on PATH in the environment this was built in, and
+      the system Python was 3.9 (project requires >=3.12) — installed
+      `uv` via `brew install uv`, then `uv sync` (which also pulled a
+      managed Python 3.12) to actually run the pipeline and test suite
+      rather than just eyeballing the code.
 
 - [ ] **Phase 8 — Extend to Crimes Against Children**: not started, not
       currently planned — reassess after Phase 5/6 are done.
