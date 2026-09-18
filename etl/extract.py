@@ -40,7 +40,7 @@ def load_dataset(name: str, raw_dir: Path = RAW_DIR) -> pd.DataFrame:
     if name not in DATASETS:
         raise ValueError(f"Unknown dataset '{name}'. Known: {list(DATASETS)}")
     df = load_raw_csv(raw_dir / DATASETS[name])
-    df = df.drop(columns=["id"], errors="ignore")  # row identifier, not a crime column
+    df = df.drop(columns=["id"], errors="ignore").copy()  # row identifier, not a crime column
     df["era"] = name
     return df
 
@@ -66,4 +66,17 @@ def load_women_datasets(raw_dir: Path = RAW_DIR) -> list[pd.DataFrame]:
     return [
         load_dataset("women_2016", raw_dir),
         load_dataset("women_2017_onwards", raw_dir),
+    ]
+
+
+def load_ipc_datasets(raw_dir: Path = RAW_DIR) -> list[pd.DataFrame]:
+    """Load both IPC-crimes eras (2016 + 2017-onwards) as separate wide
+    dataframes -- same reasoning as load_women_datasets: kept separate so
+    reshape_to_long doesn't get fed fabricated (source_column, era) pairs
+    from NaN-filled concat columns. The 2017+ IPC file has 100+ crime
+    columns vs. ~34 in 2016, the largest schema-drift case in this
+    project -- see reference/crime_category_map.csv for the consolidation."""
+    return [
+        load_dataset("ipc_2016", raw_dir),
+        load_dataset("ipc_2017_onwards", raw_dir),
     ]

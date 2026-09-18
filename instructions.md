@@ -15,7 +15,18 @@ comparison.
 
 Primary dataset: **Crimes Against Women**, district-wise (chosen over
 general IPC crimes and Crimes Against Children — see Decisions Log).
-General IPC crimes data is also in-repo and will be added as a later phase.
+**General IPC crimes has since also been extended through Phase 4**
+(reference data, extract, transform, features — not inference/load,
+see Phase 1(b) and "Not yet done" below) — both datasets run through the
+same pipeline, tagged by a `dataset` column (`women` | `ipc`) so
+overlapping crime categories (e.g. `rape`, `dowry_deaths`, which exist in
+both source tables) don't get double-counted when combined later.
+
+**Split of work**: Phases 1-4 (reference data, extract, transform,
+features) for both datasets are done here. **Phase 5 (inference) and
+Phase 6 (load) are intentionally left unimplemented** for a teammate to
+build — do not extend past Phase 4 in this part of the repo without
+checking first.
 
 Full project brief (background/rationale): `docs/district_crime_risk_tiering.pdf`
 
@@ -32,7 +43,8 @@ Full project brief (background/rationale): `docs/district_crime_risk_tiering.pdf
 5. Load      -> DuckDB warehouse (star schema, see warehouse/schema.sql)
 ```
 
-Entry point (once built): `python -m etl.pipeline`
+Entry point (not yet built — steps 4-5 are stubs, see "Not yet done"):
+`uv run python -m etl.pipeline`
 
 ## Repo layout
 
@@ -44,7 +56,9 @@ data/processed/ final tidy tables (gitignored)
 etl/          extract.py, transform.py, load.py, pipeline.py (orchestrator)
 features/     build_features.py — rate, YoY change, rolling avg
 inference/    rule_based.py (quantile tiers), clustering.py (k-means tiers)
-reference/    district_crosswalk.csv, crime_category_map.csv (hand-maintained)
+reference/    district_crosswalk.csv, crime_category_map.csv,
+              district_population_2011.csv (hand-maintained/generated),
+              build_population_reference.py (regenerates the population file)
 warehouse/    schema.sql (DDL), crime_risk.duckdb (gitignored, generated)
 tests/        unit tests per module
 notebooks/    exploration only — never authoritative pipeline logic
@@ -69,7 +83,9 @@ In `data/raw/`, already downloaded:
   file, `Ananthapuramu` in 2017+. Same code, different spelling — confirmed
   row 1 of both files. **`district_code` is the stable join key, not name.**
 
-Still needed: population/census data (for rate-per-100k), not yet pulled.
+Population/census data has since been sourced and joined — see Phase 1
+below (Census 2011, matched via a separate name-based crosswalk since its
+district codes don't align with NCRB's).
 
 ## Decisions log
 
@@ -154,8 +170,8 @@ Still needed: population/census data (for rate-per-100k), not yet pulled.
       `join_population()` added and verified: district 502/2017/rape =
       43 count, population 4,081,148 -> rate_per_100k ≈ 1.05.
       9 unit tests passing (`tests/test_extract.py`, `tests/test_transform.py`).
-      Still open: the state-wise reconciliation QA check (Phase 4/5), and
-      YoY/rolling-average feature engineering (Phase 4).
+      Still open: the state-wise reconciliation QA check (blocked — see
+      below, deferred rather than solved).
 - [x] **Phase 4 — Feature engineering**: implemented `features/build_features.py`
       on top of the population-joined tidy table from Phase 3 —
       `compute_yoy_change` (% change per district-crime_category, first
@@ -167,18 +183,85 @@ Still needed: population/census data (for rate-per-100k), not yet pulled.
       the ~18% of districts with no population match (Phase 3) get NaN for
       rate/YoY/rolling/rank rather than a crash or a fabricated value.
       4 unit tests added (`tests/test_build_features.py`), 13 total passing.
-- [ ] **Phase 5 — Inference**: implement `inference/rule_based.py` (quantile
-      tiers) first, validate output, then `inference/clustering.py` (k-means),
-      remembering to sort cluster centroids by mean rate before mapping to
-      Low/Medium/High (cluster IDs are unordered by default).
-- [ ] **Phase 6 — Load**: implement `etl/load.py`, wire up `etl/pipeline.py`
-      as the single `python -m etl.pipeline` entrypoint, create
-      `warehouse/crime_risk.duckdb` from `warehouse/schema.sql`.
-- [ ] **Phase 7 — Tests**: unit tests per module in `tests/`.
-- [ ] **Phase 8 — Extend**: repeat the pipeline for Crimes Against Children,
-      then general IPC crimes (highest schema-drift pain, saved for last).
-- [ ] **Phase 9 — Optional cloud detour**: port the load layer to Databricks
-      Community Edition or Azure, for portfolio purposes.
+- [x] **Phase 1(b)/2/3/4 for IPC crimes**: extended the whole pipeline
+      (not just reference data) from women-only to also cover general IPC
+      crimes, since IPC has the worst schema drift in the project (34
+      columns in 2016 vs. 117 in 2017+, e.g. `riots` splits into 15+
+      `rioting_*` subtypes) and was worth proving the pattern generalizes.
+      Read both IPC codebooks, built 151 category-map rows consolidating
+      2017+'s granularity down to canonical categories matching 2016's
+      level where the columns are genuinely the same offense (e.g. all
+      `rioting_*` subtypes -> `rioting`), while letting categories that
+      only exist in one era stay their own canonical bucket rather than
+      being force-merged into something legally different (e.g.
+      `criminal_misappropriation`, `sexual_harassment`, `affray` have no
+      2016 IPC equivalent — 2016 rows for those categories are simply 0/null,
+      which is honest, not a bug). Result: 46 canonical IPC categories.
+      `etl/extract.py::load_ipc_datasets()` mirrors `load_women_datasets()`.
+      Everything else (`reshape_to_long`, `normalize_districts`,
+      `normalize_crime_categories`, `join_population`, `build_features`)
+      is dataset-agnostic and needed zero changes to work on IPC — good
+      sign the Phase 1-4 abstractions were the right shape.
+      Added `tests/test_category_map_coverage.py`: a regression test that
+      loads every raw column from all 4 datasets and asserts each has a
+      category_map entry, so future NCRB schema changes fail loudly in
+      tests instead of only at pipeline runtime.
+
+      **Design decision this forced**: several canonical categories exist
+      in BOTH the women and IPC tables (`rape`, `dowry_deaths`,
+      `human_trafficking`, `assault_on_women`, `cruelty_by_husband_relatives`,
+      `insult_to_modesty`) — these are genuinely overlapping-but-not-identical
+      NCRB statistics (women-specific breakout vs. broader IPC classification),
+      not duplicates to dedupe. Whoever builds Phase 5/6 needs a `dataset`
+      column (`women` | `ipc`) in any combined table so these don't get
+      silently summed together — tag it when concatenating the two
+      datasets' tidy frames, same as `etl/extract.py`'s loaders already
+      tag each raw frame by `era`.
+
+## Not yet done — intentionally stopped here
+
+**Phase 5 (Inference) and Phase 6 (Load) are not implemented.**
+`inference/rule_based.py`, `inference/clustering.py`, `etl/load.py`, and
+`etl/pipeline.py` are still the original stub files from Phase 0
+scaffolding (`raise NotImplementedError`). This is deliberate — Phases
+1-4 (reference data, extract, transform, features) are done and tested
+for both the women and IPC datasets; inference and load are left for a
+teammate to build from here rather than being finished in this pass.
+
+What Phase 5/6 will need, based on what Phase 1-4 already produces:
+- The output of `features/build_features.py` has: `district_code`,
+  `canonical_district_name`, `state_name`, `year`, `crime_category`,
+  `count`, `population_2011`, `rate_per_100k`, `yoy_change_pct`,
+  `rolling_3yr_avg`, `in_state_rank` — no `dataset` column yet, since
+  women and IPC haven't been combined into one table anywhere in the
+  current code. That combining + tagging step is part of what's left.
+- `warehouse/schema.sql` still reflects the original Phase 0 design
+  (surrogate integer IDs, no `dataset` column, women-only assumption) —
+  worth revisiting once the combined-table shape is decided, not
+  necessarily taking it as fixed.
+- Tiering design (quantile tertiles + k-means, `method`/`tier`/`score`
+  columns, state-relative not national) was discussed and is documented
+  in the Decisions log above, but no code for it exists yet.
+
+- [ ] **Phase 8 — Extend to Crimes Against Children**: not started, not
+      currently planned — reassess after Phase 5/6 are done.
+
+- [ ] **Phase 9 — Optional cloud detour**: Databricks/Azure deployment for
+      resume purposes per the target JD — do last, only if time allows.
+
+- [ ] **State-wise reconciliation QA check** (originally slotted into
+      Phase 4/5, pulled out as its own item): deliberately not done.
+      Needs an *independent* state-level totals dataset to check the
+      district-level rollup against (data.gov.in's own catalog or
+      dataful.in both have the right dataset, but both gate the actual
+      download behind client-side JS with no accessible static URL or
+      open API found — data.gov.in's own UI says "Catalog API is not
+      available" for this resource). Not worth more scraping effort.
+      Path forward: either download the state-wise women-crimes CSV
+      manually via browser and drop it in `data/raw/`, or get a
+      `data.gov.in` API key + the specific resource ID from a logged-in
+      dashboard and pull it via `api.data.gov.in/resource/<id>` properly.
+      Either unblocks wiring up the actual reconciliation check.
 
 ## How to resume work
 
