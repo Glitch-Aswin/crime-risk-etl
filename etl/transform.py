@@ -100,3 +100,19 @@ def normalize_crime_categories(
         .sum()
         .rename(columns={"canonical_category": "crime_category"})
     )
+
+
+def join_population(df: pd.DataFrame, population: pd.DataFrame) -> pd.DataFrame:
+    """Join district-level Census 2011 population onto the tidy crime
+    table via district_code, and compute rate_per_100k. Districts with no
+    population figure (mostly ones created after the 2011 census -- see
+    reference/build_population_reference.py) get a null rate rather than a
+    guessed one; callers computing rate-based tiers should drop or
+    explicitly handle those rows."""
+    out = df.merge(
+        population[["district_code", "population_2011"]],
+        on="district_code",
+        how="left",
+    )
+    out["rate_per_100k"] = (out["count"] / out["population_2011"]) * 100_000
+    return out

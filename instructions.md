@@ -108,9 +108,33 @@ Still needed: population/census data (for rate-per-100k), not yet pulled.
       (754 districts): 70 codes new post-2017, 24 spelling changes across
       eras, 3 codes with >1 name even within the 2017+ era alone, 3 codes
       only in 2016. `district_code` confirmed as the stable join key.
-      Still open: population/census data per district-year (needed for
-      rate_per_100k in Phase 4), and the equivalent reference data for IPC
-      crimes (larger schema-drift problem, 130+ columns in 2017+).
+      Population sourced separately (see below) since it's a bigger job
+      than a simple crosswalk edit. Still open: equivalent reference data
+      for IPC crimes (larger schema-drift problem, 130+ columns in 2017+).
+
+      **Population (Census 2011)**: pulled `india-districts-census-2011.csv`
+      (640 districts) from a mirrored GitHub copy of the census dataset,
+      saved to `data/raw/`. Its district codes do **not** match NCRB's
+      `district_code` scheme at all (verified: Anantapur is `502` in NCRB,
+      `553` in this census file) -- population had to be joined by
+      normalized (state, district) *name* instead, a separate matching
+      problem from the NCRB-to-NCRB crosswalk. Built
+      `reference/build_population_reference.py`, a three-pass matcher:
+      (1) exact normalized name match, (2) state-alias match (handles
+      Odisha/Orissa, Puducherry/Pondicherry, Delhi/NCT of Delhi, and
+      Telangana -- which didn't exist as a separate state in the 2011
+      census, matched against undivided Andhra Pradesh), (3) fuzzy name
+      match (difflib, cutoff 0.72) within the resolved state. Result:
+      509 exact + 49 state-alias + 57 fuzzy = 615/754 districts matched
+      (81.6%). The 139 unmatched are districts created *after* 2011 (no
+      population figure can legitimately exist for them yet) -- left as
+      null rather than guessed; `join_population()` in `etl/transform.py`
+      produces a null `rate_per_100k` for these rather than silently
+      dropping or estimating them. Output written to
+      `reference/district_population_2011.csv`.
+      Caveat to remember for Phase 5 (tiering): rate-based tiers will
+      simply exclude the ~18% of districts with no population figure --
+      worth calling out explicitly in any write-up, not hidden.
 - [x] **Phase 2 — Extract**: `etl/extract.py` implemented — loads the two
       women-crimes CSVs, drops the row-id column, tags each with an `era`.
       Kept as separate wide dataframes per era (not concatenated) since
@@ -127,9 +151,11 @@ Still needed: population/census data (for rate-per-100k), not yet pulled.
       43, correctly summed across *two* registration_circles rows plus the
       age-split rape columns — confirms aggregation handles the
       multi-row-per-district-year case, not just the multi-column case.
-      7 unit tests passing (`tests/test_extract.py`, `tests/test_transform.py`).
-      Still open: population join + rate_per_100k (moved to Phase 4), and
-      the state-wise reconciliation QA check.
+      `join_population()` added and verified: district 502/2017/rape =
+      43 count, population 4,081,148 -> rate_per_100k ≈ 1.05.
+      9 unit tests passing (`tests/test_extract.py`, `tests/test_transform.py`).
+      Still open: the state-wise reconciliation QA check (Phase 4/5), and
+      YoY/rolling-average feature engineering (Phase 4).
 - [ ] **Phase 4 — Feature engineering**: implement `features/build_features.py`
       — YoY change, 3-year rolling average, in-state rank.
 - [ ] **Phase 5 — Inference**: implement `inference/rule_based.py` (quantile

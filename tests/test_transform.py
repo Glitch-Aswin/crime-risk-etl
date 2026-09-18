@@ -2,6 +2,7 @@ import pandas as pd
 import pytest
 
 from etl.transform import (
+    join_population,
     normalize_crime_categories,
     normalize_districts,
     reshape_to_long,
@@ -68,6 +69,22 @@ def test_normalize_crime_categories_sums_subcategories_split_across_eras():
     out = normalize_crime_categories(df, category_map)
     assert out["count"].iloc[0] == 43
     assert out["crime_category"].iloc[0] == "rape"
+
+
+def test_join_population_computes_rate_per_100k():
+    df = pd.DataFrame({"district_code": ["502"], "count": [43]})
+    population = pd.DataFrame(
+        {"district_code": ["502"], "population_2011": [4_081_148]}
+    )
+    out = join_population(df, population)
+    assert out["rate_per_100k"].iloc[0] == pytest.approx(43 / 4_081_148 * 100_000)
+
+
+def test_join_population_leaves_null_rate_when_district_has_no_population():
+    df = pd.DataFrame({"district_code": ["999"], "count": [5]})
+    population = pd.DataFrame({"district_code": [], "population_2011": []})
+    out = join_population(df, population)
+    assert pd.isna(out["rate_per_100k"].iloc[0])
 
 
 def test_normalize_crime_categories_raises_on_unmapped_column():

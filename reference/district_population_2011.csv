@@ -1,0 +1,755 @@
+district_code,state_name,canonical_name,population_2011,match_method
+1,Jammu And Kashmir,Anantnag,1078692.0,exact
+10,Jammu And Kashmir,Poonch,476835,fuzzy
+100,Rajasthan,Ganganagar,1969168.0,exact
+101,Rajasthan,Hanumangarh,1774692.0,exact
+102,Rajasthan,Jaipur,6626178.0,exact
+103,Rajasthan,Jaisalmer,669919.0,exact
+104,Rajasthan,Jalore,1828730,fuzzy
+105,Rajasthan,Jhalawar,1411129.0,exact
+106,Rajasthan,Jhunjhunu,2137045,fuzzy
+107,Rajasthan,Jodhpur,3687165.0,exact
+108,Rajasthan,Karauli,1458248.0,exact
+109,Rajasthan,Kota,1951014.0,exact
+11,Jammu And Kashmir,Pulwama,560440.0,exact
+110,Rajasthan,Nagaur,3307743.0,exact
+111,Rajasthan,Pali,2037573.0,exact
+112,Rajasthan,Rajsamand,1156597.0,exact
+113,Rajasthan,Sawai Madhopur,1335551.0,exact
+114,Rajasthan,Sikar,2677333.0,exact
+115,Rajasthan,Sirohi,1036346.0,exact
+116,Rajasthan,Tonk,1421326.0,exact
+117,Rajasthan,Udaipur,3068420.0,exact
+118,Uttar Pradesh,Agra,4418797.0,exact
+119,Uttar Pradesh,Aligarh,3673889.0,exact
+12,Jammu And Kashmir,Rajouri,642415.0,exact
+120,Uttar Pradesh,Prayagraj,,unmatched_likely_post_2011_district
+121,Uttar Pradesh,Ambedkar Nagar,2397888.0,exact
+122,Uttar Pradesh,Auraiya,1379545.0,exact
+123,Uttar Pradesh,Azamgarh,4613913.0,exact
+124,Uttar Pradesh,Baghpat,1303048.0,exact
+125,Uttar Pradesh,Bahraich,3487731.0,exact
+126,Uttar Pradesh,Ballia,3239774.0,exact
+127,Uttar Pradesh,Balrampur,2148665.0,exact
+128,Uttar Pradesh,Banda,1799410.0,exact
+129,Uttar Pradesh,Bara Banki,3260699.0,exact
+13,Jammu And Kashmir,Srinagar,1236829.0,exact
+130,Uttar Pradesh,Bareilly,4448359.0,exact
+131,Uttar Pradesh,Basti,2464464.0,exact
+132,Uttar Pradesh,Bijnor,3682713.0,exact
+133,Uttar Pradesh,Budaun,3681896.0,exact
+134,Uttar Pradesh,Bulandshahr,3499171.0,exact
+135,Uttar Pradesh,Chandauli,1952756.0,exact
+136,Uttar Pradesh,Chitrakoot,991730.0,exact
+137,Uttar Pradesh,Deoria,3100946.0,exact
+138,Uttar Pradesh,Etah,1774480.0,exact
+139,Uttar Pradesh,Etawah,1581810.0,exact
+14,Jammu And Kashmir,Udhampur,554985.0,exact
+140,Uttar Pradesh,Ayodhya,,unmatched_likely_post_2011_district
+141,Uttar Pradesh,Farrukhabad,1885204.0,exact
+142,Uttar Pradesh,Fatehpur,2632733.0,exact
+143,Uttar Pradesh,Firozabad,2498156.0,exact
+144,Uttar Pradesh,Gautam Buddha Nagar,1648115.0,exact
+145,Uttar Pradesh,Ghaziabad,4681645.0,exact
+146,Uttar Pradesh,Ghazipur,3620268.0,exact
+147,Uttar Pradesh,Gonda,3433919.0,exact
+148,Uttar Pradesh,Gorakhpur,4440895.0,exact
+149,Uttar Pradesh,Hamirpur,1104285.0,exact
+15,Himachal Pradesh,Bilaspur,381956.0,exact
+150,Uttar Pradesh,Hardoi,4092845.0,exact
+151,Uttar Pradesh,Jalaun,1689974.0,exact
+152,Uttar Pradesh,Jaunpur,4494204.0,exact
+153,Uttar Pradesh,Jhansi,1998603.0,exact
+154,Uttar Pradesh,Amroha,,unmatched_likely_post_2011_district
+155,Uttar Pradesh,Kannauj,1656616.0,exact
+156,Uttar Pradesh,Kanpur Dehat,1796184.0,exact
+157,Uttar Pradesh,Kanpur Nagar,4581268.0,exact
+158,Uttar Pradesh,Kaushambi,1599596.0,exact
+159,Uttar Pradesh,Kheri,4021243.0,exact
+16,Himachal Pradesh,Chamba,519080.0,exact
+160,Uttar Pradesh,Kushinagar,3564544.0,exact
+161,Uttar Pradesh,Lalitpur,1221592.0,exact
+162,Uttar Pradesh,Lucknow,4589838.0,exact
+163,Uttar Pradesh,Hathras,,unmatched_likely_post_2011_district
+164,Uttar Pradesh,Mahrajganj,2684703.0,exact
+165,Uttar Pradesh,Mahoba,875958.0,exact
+166,Uttar Pradesh,Mainpuri,1868529.0,exact
+167,Uttar Pradesh,Mathura,2547184.0,exact
+168,Uttar Pradesh,Mau,2205968.0,exact
+169,Uttar Pradesh,Meerut,3443689.0,exact
+17,Himachal Pradesh,Hamirpur,454768.0,exact
+170,Uttar Pradesh,Mirzapur,2496970.0,exact
+171,Uttar Pradesh,Moradabad,4772006.0,exact
+172,Uttar Pradesh,Muzaffarnagar,4143512.0,exact
+173,Uttar Pradesh,Pilibhit,2031007.0,exact
+174,Uttar Pradesh,Pratapgarh,3209141.0,exact
+175,Uttar Pradesh,Rae Bareli,3405559.0,exact
+176,Uttar Pradesh,Rampur,2335819.0,exact
+177,Uttar Pradesh,Saharanpur,3466382.0,exact
+178,Uttar Pradesh,Sant Kabir Nagar,1715183.0,exact
+179,Uttar Pradesh,Bhadohi,4092845,fuzzy
+18,Himachal Pradesh,Kangra,1510075.0,exact
+180,Uttar Pradesh,Shahjahanpur,3006538.0,exact
+181,Uttar Pradesh,Shrawasti,1117361.0,exact
+182,Uttar Pradesh,Siddharthnagar,2559297.0,exact
+183,Uttar Pradesh,Sitapur,4483992.0,exact
+184,Uttar Pradesh,Sonbhadra,1862559.0,exact
+185,Uttar Pradesh,Sultanpur,3797117.0,exact
+186,Uttar Pradesh,Unnao,3108367.0,exact
+187,Uttar Pradesh,Varanasi,3676841.0,exact
+188,Bihar,Araria,2811569.0,exact
+189,Bihar,Aurangabad,2540073.0,exact
+19,Himachal Pradesh,Kinnaur,84121.0,exact
+190,Bihar,Banka,2034763.0,exact
+191,Bihar,Begusarai,2970541.0,exact
+192,Bihar,Bhagalpur,3037766.0,exact
+193,Bihar,Bhojpur,2728407.0,exact
+194,Bihar,Buxar,1706352.0,exact
+195,Bihar,Darbhanga,3937385.0,exact
+196,Bihar,Gaya,4391418.0,exact
+197,Bihar,Gopalganj,2562012.0,exact
+198,Bihar,Jamui,1760405.0,exact
+199,Bihar,Jehanabad,1125313.0,exact
+2,Jammu And Kashmir,Budgam,753745,fuzzy
+20,Himachal Pradesh,Kullu,437903.0,exact
+200,Bihar,Kaimur (Bhabua),1626384.0,exact
+201,Bihar,Katihar,3071029.0,exact
+202,Bihar,Khagaria,1666886.0,exact
+203,Bihar,Kishanganj,1690400.0,exact
+204,Bihar,Lakhisarai,1000912.0,exact
+205,Bihar,Madhepura,2001762.0,exact
+206,Bihar,Madhubani,4487379.0,exact
+207,Bihar,Munger,1367765.0,exact
+208,Bihar,Muzaffarpur,4801062.0,exact
+209,Bihar,Nalanda,2877653.0,exact
+21,Himachal Pradesh,Lahul And Spiti,31564.0,exact
+210,Bihar,Nawada,2219146.0,exact
+211,Bihar,Pashchim Champaran,3935042.0,exact
+212,Bihar,Patna,5838465.0,exact
+213,Bihar,Purbi Champaran,5099371,fuzzy
+214,Bihar,Purnia,3264619.0,exact
+215,Bihar,Rohtas,2959918.0,exact
+216,Bihar,Saharsa,1900661.0,exact
+217,Bihar,Samastipur,4261566.0,exact
+218,Bihar,Saran,3951862.0,exact
+219,Bihar,Sheikhpura,636342.0,exact
+22,Himachal Pradesh,Mandi,999777.0,exact
+220,Bihar,Sheohar,656246.0,exact
+221,Bihar,Sitamarhi,3423574.0,exact
+222,Bihar,Siwan,3330464.0,exact
+223,Bihar,Supaul,2229076.0,exact
+224,Bihar,Vaishali,3495021.0,exact
+225,Sikkim,Gangtok,,unmatched_likely_post_2011_district
+226,Sikkim,Mangan,,unmatched_likely_post_2011_district
+227,Sikkim,Namchi,,unmatched_likely_post_2011_district
+228,Sikkim,Gyalshing,,unmatched_likely_post_2011_district
+229,Arunachal Pradesh,Changlang,148226.0,exact
+23,Himachal Pradesh,Shimla,814010.0,exact
+230,Arunachal Pradesh,Dibang Valley,8004.0,exact
+231,Arunachal Pradesh,East Kameng,78690.0,exact
+232,Arunachal Pradesh,East Siang,99214.0,exact
+233,Arunachal Pradesh,Kurung Kumey,92076.0,exact
+234,Arunachal Pradesh,Lohit,145726.0,exact
+235,Arunachal Pradesh,Lower Dibang Valley,54080.0,exact
+236,Arunachal Pradesh,Lower Subansiri,83030.0,exact
+237,Arunachal Pradesh,Papum Pare,176573.0,exact
+238,Arunachal Pradesh,Tawang,49977.0,exact
+239,Arunachal Pradesh,Tirap,111975.0,exact
+24,Himachal Pradesh,Sirmaur,529855.0,exact
+240,Arunachal Pradesh,Upper Siang,35320.0,exact
+241,Arunachal Pradesh,Upper Subansiri,83448.0,exact
+242,Arunachal Pradesh,West Kameng,83947.0,exact
+243,Arunachal Pradesh,West Siang,112274.0,exact
+244,Nagaland,Dimapur,378811.0,exact
+245,Nagaland,Kohima,267988.0,exact
+246,Nagaland,Mokokchung,194622.0,exact
+247,Nagaland,Mon,250260.0,exact
+248,Nagaland,Phek,163418.0,exact
+249,Nagaland,Tuensang,196596.0,exact
+25,Himachal Pradesh,Solan,580320.0,exact
+250,Nagaland,Wokha,166343.0,exact
+251,Nagaland,Zunheboto,140757.0,exact
+252,Manipur,Bishnupur,237399.0,exact
+253,Manipur,Chandel,144182.0,exact
+254,Manipur,Churachandpur,274143.0,exact
+255,Manipur,Imphal East,456113.0,exact
+256,Manipur,Imphal West,517992.0,exact
+257,Manipur,Senapati,479148.0,exact
+258,Manipur,Tamenglong,140651.0,exact
+259,Manipur,Thoubal,422168.0,exact
+26,Himachal Pradesh,Una,521173.0,exact
+260,Manipur,Ukhrul,183998.0,exact
+261,Mizoram,Aizawl,400309.0,exact
+262,Mizoram,Champhai,125745.0,exact
+263,Mizoram,Kolasib,83955.0,exact
+264,Mizoram,Lawngtlai,117894.0,exact
+265,Mizoram,Lunglei,161428.0,exact
+266,Mizoram,Mamit,86364.0,exact
+267,Mizoram,Siaha,56574,fuzzy
+268,Mizoram,Serchhip,64937.0,exact
+269,Tripura,Dhalai,378230.0,exact
+27,Punjab,Amritsar,2490656.0,exact
+270,Tripura,North Tripura,693947.0,exact
+271,Tripura,South Tripura,876001.0,exact
+272,Tripura,West Tripura,1725739.0,exact
+273,Meghalaya,East Garo Hills,317917.0,exact
+274,Meghalaya,East Khasi Hills,825922.0,exact
+275,Meghalaya,West Jaintia Hills,395124,fuzzy
+276,Meghalaya,Ri Bhoi,258840.0,exact
+277,Meghalaya,South Garo Hills,142334.0,exact
+278,Meghalaya,West Garo Hills,643291.0,exact
+279,Meghalaya,West Khasi Hills,383461.0,exact
+28,Punjab,Bathinda,1388525.0,exact
+280,Assam,Barpeta,1693622.0,exact
+281,Assam,Bongaigaon,738804.0,exact
+282,Assam,Cachar,1736617.0,exact
+283,Assam,Darrang,928500.0,exact
+284,Assam,Dhemaji,686133.0,exact
+285,Assam,Dhubri,1949258.0,exact
+286,Assam,Dibrugarh,1326335.0,exact
+287,Assam,Goalpara,1008183.0,exact
+288,Assam,Golaghat,1066888.0,exact
+289,Assam,Hailakandi,659296.0,exact
+29,Punjab,Faridkot,617508.0,exact
+290,Assam,Jorhat,1092256.0,exact
+291,Assam,Kamrup,1517542.0,exact
+292,Assam,Karbi Anglong,956313.0,exact
+293,Assam,Karimganj,1228686.0,exact
+294,Assam,Kokrajhar,887142.0,exact
+295,Assam,Lakhimpur,1042137.0,exact
+296,Assam,Marigaon,957423,fuzzy
+297,Assam,Nagaon,2823768.0,exact
+298,Assam,Nalbari,771639.0,exact
+299,Assam,Dima Hasao,214102.0,exact
+3,Jammu And Kashmir,Baramulla,1008039,fuzzy
+30,Punjab,Fatehgarh Sahib,600163.0,exact
+300,Assam,Sivasagar,1151050.0,exact
+301,Assam,Sonitpur,1924110.0,exact
+302,Assam,Tinsukia,1327929.0,exact
+303,West Bengal,North 24 Parganas,,unmatched_likely_post_2011_district
+304,West Bengal,South 24 Parganas,,unmatched_likely_post_2011_district
+305,West Bengal,Bankura,3596674.0,exact
+306,West Bengal,Purba Bardhaman,7717563,fuzzy
+307,West Bengal,Birbhum,3502404.0,exact
+308,West Bengal,Cooch Behar,2819086,fuzzy
+309,West Bengal,Darjeeling,1846823,fuzzy
+31,Punjab,Ferozepur,2029074,fuzzy
+310,West Bengal,Dakshin Dinajpur,1676276.0,exact
+311,West Bengal,Uttar Dinajpur,3007134.0,exact
+312,West Bengal,Hooghly,,unmatched_likely_post_2011_district
+313,West Bengal,Howrah,4850029,fuzzy
+314,West Bengal,Jalpaiguri,3872846.0,exact
+315,West Bengal,Kolkata,4496694.0,exact
+316,West Bengal,Malda,3988845,fuzzy
+317,West Bengal,Purba Medinipur,5095875.0,exact
+318,West Bengal,Paschim Medinipur,5913457.0,exact
+319,West Bengal,Murshidabad,7103807.0,exact
+32,Punjab,Gurdaspur,2298323.0,exact
+320,West Bengal,Nadia,5167600.0,exact
+321,West Bengal,Purulia,2930115,fuzzy
+322,Jharkhand,Bokaro,2062330.0,exact
+323,Jharkhand,Chatra,1042886.0,exact
+324,Jharkhand,Deoghar,1492073.0,exact
+325,Jharkhand,Dhanbad,2684487.0,exact
+326,Jharkhand,Dumka,1321442.0,exact
+327,Jharkhand,East Singhbum,,unmatched_likely_post_2011_district
+328,Jharkhand,Garhwa,1322784.0,exact
+329,Jharkhand,Giridih,2445474.0,exact
+33,Punjab,Hoshiarpur,1586625.0,exact
+330,Jharkhand,Godda,1313551.0,exact
+331,Jharkhand,Gumla,1025213.0,exact
+332,Jharkhand,Hazaribagh,1734495.0,exact
+333,Jharkhand,Jamtara,791042.0,exact
+334,Jharkhand,Koderma,716259,fuzzy
+335,Jharkhand,Latehar,726978.0,exact
+336,Jharkhand,Lohardaga,461790.0,exact
+337,Jharkhand,Pakur,900422.0,exact
+338,Jharkhand,Palamu,1939869.0,exact
+339,Jharkhand,Ranchi,2914253.0,exact
+34,Punjab,Jalandhar,2193590.0,exact
+340,Jharkhand,Sahebganj,1150567,fuzzy
+341,Jharkhand,Saraikela Kharsawan,1065056.0,exact
+342,Jharkhand,Simdega,599578.0,exact
+343,Jharkhand,West Singhbhum,,unmatched_likely_post_2011_district
+344,Odisha,Anugul,1273821,state_alias
+345,Odisha,Balangir,1648997,state_alias
+346,Odisha,Baleshwar,2320529,state_alias
+347,Odisha,Bargarh,1481255,state_alias
+348,Odisha,Bhadrak,1506337,state_alias
+349,Odisha,Boudh,441162,fuzzy
+35,Punjab,Kapurthala,815168.0,exact
+350,Odisha,Cuttack,2624470,state_alias
+351,Odisha,Deogarh,312520,fuzzy
+352,Odisha,Dhenkanal,1192811,state_alias
+353,Odisha,Gajapati,577817,state_alias
+354,Odisha,Ganjam,3529031,state_alias
+355,Odisha,Jagatsinghapur,1136971,state_alias
+356,Odisha,Jajapur,1827192,state_alias
+357,Odisha,Jharsuguda,579505,state_alias
+358,Odisha,Kalahandi,1576869,state_alias
+359,Odisha,Kandhamal,733110,state_alias
+36,Punjab,Ludhiana,3498739.0,exact
+360,Odisha,Kendrapara,1440361,state_alias
+361,Odisha,Kendujhar,1801733,state_alias
+362,Odisha,Khordha,2251673,state_alias
+363,Odisha,Koraput,1379647,state_alias
+364,Odisha,Malkangiri,613192,state_alias
+365,Odisha,Mayurbhanj,2519738,state_alias
+366,Odisha,Nabarangpur,1220946,fuzzy
+367,Odisha,Nayagarh,962789,state_alias
+368,Odisha,Nuapada,610382,state_alias
+369,Odisha,Puri,1698730,state_alias
+37,Punjab,Mansa,769751.0,exact
+370,Odisha,Rayagada,967911,state_alias
+371,Odisha,Sambalpur,1041099,state_alias
+372,Odisha,Sonepur,,unmatched_likely_post_2011_district
+373,Odisha,Sundargarh,2093437,state_alias
+374,Chhattisgarh,Bastar,1413199.0,exact
+375,Chhattisgarh,Bilaspur,2663629.0,exact
+376,Chhattisgarh,Dakshin Bastar Dantewada,533638.0,exact
+377,Chhattisgarh,Dhamtari,799781.0,exact
+378,Chhattisgarh,Durg,3343872.0,exact
+379,Chhattisgarh,Janjgir-Champa,1619707.0,exact
+38,Punjab,Moga,995746.0,exact
+380,Chhattisgarh,Jashpur,851669.0,exact
+381,Chhattisgarh,Uttar Bastar Kanker,748941.0,exact
+382,Chhattisgarh,Kabeerdham,822526.0,exact
+383,Chhattisgarh,Korba,1206640.0,exact
+384,Chhattisgarh,Korea,1206640,fuzzy
+385,Chhattisgarh,Mahasamund,1032754.0,exact
+386,Chhattisgarh,Raigarh,1493984.0,exact
+387,Chhattisgarh,Raipur,4063872.0,exact
+388,Chhattisgarh,Rajnandgaon,1537133.0,exact
+389,Chhattisgarh,Surguja,2359886.0,exact
+39,Punjab,Sri Muktsar Sahib,,unmatched_likely_post_2011_district
+390,Madhya Pradesh,Anuppur,749237.0,exact
+391,Madhya Pradesh,Ashoknagar,845071.0,exact
+392,Madhya Pradesh,Balaghat,1701698.0,exact
+393,Madhya Pradesh,Barwani,1385881.0,exact
+394,Madhya Pradesh,Betul,1575362.0,exact
+395,Madhya Pradesh,Bhind,1703005.0,exact
+396,Madhya Pradesh,Bhopal,2371061.0,exact
+397,Madhya Pradesh,Burhanpur,757847.0,exact
+398,Madhya Pradesh,Chhatarpur,1762375.0,exact
+399,Madhya Pradesh,Chhindwara,2090922.0,exact
+4,Jammu And Kashmir,Doda,409936.0,exact
+40,Punjab,Shahid Bhagat Singh Nagar,612310.0,exact
+400,Madhya Pradesh,Damoh,1264219.0,exact
+401,Madhya Pradesh,Datia,786754.0,exact
+402,Madhya Pradesh,Dewas,1563715.0,exact
+403,Madhya Pradesh,Dhar,2185793.0,exact
+404,Madhya Pradesh,Dindori,704524.0,exact
+405,Madhya Pradesh,Khandwa (East Nimar),1310061.0,exact
+406,Madhya Pradesh,Guna,1241519.0,exact
+407,Madhya Pradesh,Gwalior,2032036.0,exact
+408,Madhya Pradesh,Harda,570465.0,exact
+409,Madhya Pradesh,Narmadapuram,,unmatched_likely_post_2011_district
+41,Punjab,Patiala,1895686.0,exact
+410,Madhya Pradesh,Indore,3276697.0,exact
+411,Madhya Pradesh,Jabalpur,2463289.0,exact
+412,Madhya Pradesh,Jhabua,1025048.0,exact
+413,Madhya Pradesh,Katni,1292042.0,exact
+414,Madhya Pradesh,Khargone (West Nimar),1873046.0,exact
+415,Madhya Pradesh,Mandla,1054905.0,exact
+416,Madhya Pradesh,Mandsaur,1340411.0,exact
+417,Madhya Pradesh,Morena,1965970.0,exact
+418,Madhya Pradesh,Narsimhapur,1091854.0,exact
+419,Madhya Pradesh,Neemuch,826067.0,exact
+42,Punjab,Rupnagar,684627.0,exact
+420,Madhya Pradesh,Panna,1016520.0,exact
+421,Madhya Pradesh,Raisen,1331597.0,exact
+422,Madhya Pradesh,Rajgarh,1545814.0,exact
+423,Madhya Pradesh,Ratlam,1455069.0,exact
+424,Madhya Pradesh,Rewa,2365106.0,exact
+425,Madhya Pradesh,Sagar,2378458.0,exact
+426,Madhya Pradesh,Satna,2228935.0,exact
+427,Madhya Pradesh,Sehore,1311332.0,exact
+428,Madhya Pradesh,Seoni,1379131.0,exact
+429,Madhya Pradesh,Shahdol,1066063.0,exact
+43,Punjab,Sangrur,1655169.0,exact
+430,Madhya Pradesh,Shajapur,1512681.0,exact
+431,Madhya Pradesh,Sheopur,687861.0,exact
+432,Madhya Pradesh,Shivpuri,1726050.0,exact
+433,Madhya Pradesh,Sidhi,1127033.0,exact
+434,Madhya Pradesh,Tikamgarh,1445166.0,exact
+435,Madhya Pradesh,Ujjain,1986864.0,exact
+436,Madhya Pradesh,Umaria,644758.0,exact
+437,Madhya Pradesh,Vidisha,1458875.0,exact
+438,Gujarat,Ahmadabad,7214225.0,exact
+439,Gujarat,Amreli,1514190.0,exact
+44,Chandigarh,Chandigarh,1055450.0,exact
+440,Gujarat,Anand,2092745.0,exact
+441,Gujarat,Banas Kantha,3120506.0,exact
+442,Gujarat,Bharuch,1551019.0,exact
+443,Gujarat,Bhavnagar,2880365.0,exact
+444,Gujarat,Dang,,unmatched_likely_post_2011_district
+445,Gujarat,Dohad,2127086.0,exact
+446,Gujarat,Gandhinagar,1391753.0,exact
+447,Gujarat,Jamnagar,2160119.0,exact
+448,Gujarat,Junagadh,2743082.0,exact
+449,Gujarat,Kachchh,2092371.0,exact
+45,Uttarakhand,Almora,622506.0,exact
+450,Gujarat,Kheda,2299885.0,exact
+451,Gujarat,Mahesana,2035064.0,exact
+452,Gujarat,Narmada,590297.0,exact
+453,Gujarat,Navsari,1329672.0,exact
+454,Gujarat,Panch Mahals,2390776.0,exact
+455,Gujarat,Patan,1343734.0,exact
+456,Gujarat,Porbandar,585449.0,exact
+457,Gujarat,Rajkot,3804558.0,exact
+458,Gujarat,Sabar Kantha,2428589.0,exact
+459,Gujarat,Surat,6081322.0,exact
+46,Uttarakhand,Bageshwar,259898.0,exact
+460,Gujarat,Surendranagar,1756268.0,exact
+461,Gujarat,Vadodara,4165626.0,exact
+462,Gujarat,Valsad,1705678.0,exact
+463,The Dadra And Nagar Haveli And Daman And Diu,Daman,191173,state_alias
+464,The Dadra And Nagar Haveli And Daman And Diu,Diu,52074,state_alias
+465,The Dadra And Nagar Haveli And Daman And Diu,Dadra And Nagar Haveli,343709,state_alias
+466,Maharashtra,Ahmednagar,4543159,fuzzy
+467,Maharashtra,Akola,1813906.0,exact
+468,Maharashtra,Amravati,2888445.0,exact
+469,Maharashtra,Chhatrapati Sambhajinagar,,unmatched_likely_post_2011_district
+47,Uttarakhand,Chamoli,391605.0,exact
+470,Maharashtra,Beed,,unmatched_likely_post_2011_district
+471,Maharashtra,Bhandara,1200334.0,exact
+472,Maharashtra,Buldhana,2586258,fuzzy
+473,Maharashtra,Chandrapur,2204307.0,exact
+474,Maharashtra,Dhule,2050862.0,exact
+475,Maharashtra,Gadchiroli,1072942.0,exact
+476,Maharashtra,Gondia,1322507,fuzzy
+477,Maharashtra,Hingoli,1177345.0,exact
+478,Maharashtra,Jalgaon,4229917.0,exact
+479,Maharashtra,Jalna,1959046.0,exact
+48,Uttarakhand,Champawat,259648.0,exact
+480,Maharashtra,Kolhapur,3876001.0,exact
+481,Maharashtra,Latur,2454196.0,exact
+482,Maharashtra,Mumbai,3085411.0,exact
+483,Maharashtra,Mumbai Suburban,9356962.0,exact
+484,Maharashtra,Nagpur,4653570.0,exact
+485,Maharashtra,Nanded,3361292.0,exact
+486,Maharashtra,Nandurbar,1648295.0,exact
+487,Maharashtra,Nashik,6107187.0,exact
+488,Maharashtra,Dharashiv,,unmatched_likely_post_2011_district
+489,Maharashtra,Parbhani,1836086.0,exact
+49,Uttarakhand,Dehradun,1696694.0,exact
+490,Maharashtra,Pune,9429408.0,exact
+491,Maharashtra,Raigad,2634200,fuzzy
+492,Maharashtra,Ratnagiri,1615069.0,exact
+493,Maharashtra,Sangli,2822143.0,exact
+494,Maharashtra,Satara,3003741.0,exact
+495,Maharashtra,Sindhudurg,849651.0,exact
+496,Maharashtra,Solapur,4317756.0,exact
+497,Maharashtra,Thane,11060148.0,exact
+498,Maharashtra,Wardha,1300774.0,exact
+499,Maharashtra,Washim,1197160.0,exact
+5,Jammu And Kashmir,Jammu,1529958.0,exact
+50,Uttarakhand,Haridwar,1890422,fuzzy
+500,Maharashtra,Yavatmal,2772348.0,exact
+501,Telangana,Adilabad,2741239,state_alias
+502,Andhra Pradesh,Anantapur,4081148.0,exact
+503,Andhra Pradesh,Chittoor,4174064.0,exact
+504,Andhra Pradesh,Y.S.R.,2882469.0,exact
+505,Andhra Pradesh,East Godavari,5154296.0,exact
+506,Andhra Pradesh,Guntur,4887813.0,exact
+507,Telangana,Hyderabad,3943323,state_alias
+508,Telangana,Karimnagar,3776269,state_alias
+509,Telangana,Khammam,2797370,state_alias
+51,Uttarakhand,Nainital,954605.0,exact
+510,Andhra Pradesh,Krishna,4517398.0,exact
+511,Andhra Pradesh,Kurnool,4053463.0,exact
+512,Telangana,Mahabubnagar,4053028,fuzzy
+513,Telangana,Medak,3033288,state_alias
+514,Telangana,Nalgonda,3488809,state_alias
+515,Andhra Pradesh,Spsr Nellore,,unmatched_likely_post_2011_district
+516,Telangana,Nizamabad,2551335,state_alias
+517,Andhra Pradesh,Prakasam,3397448.0,exact
+518,Telangana,Ranga Reddy,5296741,state_alias
+519,Andhra Pradesh,Srikakulam,2703114.0,exact
+52,Uttarakhand,Pauri Garhwal,618931,fuzzy
+520,Andhra Pradesh,Visakhapatanam,4290589,fuzzy
+521,Andhra Pradesh,Vizianagaram,2344474.0,exact
+522,Telangana,Warangal,3512576,state_alias
+523,Andhra Pradesh,West Godavari,3936966.0,exact
+524,Karnataka,Bagalkote,1889752,fuzzy
+525,Karnataka,Bengaluru Urban,,unmatched_likely_post_2011_district
+527,Karnataka,Belagavi,,unmatched_likely_post_2011_district
+528,Karnataka,Ballari,,unmatched_likely_post_2011_district
+529,Karnataka,Bidar,1703300.0,exact
+53,Uttarakhand,Pithoragarh,483439.0,exact
+530,Karnataka,Vijayapura,,unmatched_likely_post_2011_district
+531,Karnataka,Chamarajanagara,1020791,fuzzy
+532,Karnataka,Chikkamagaluru,1137961,fuzzy
+533,Karnataka,Chitradurga,1659456.0,exact
+534,Karnataka,Dakshina Kannada,2089649.0,exact
+535,Karnataka,Davangere,1945497,fuzzy
+536,Karnataka,Dharwad,1847023.0,exact
+537,Karnataka,Gadag,1064570.0,exact
+538,Karnataka,Kalaburagi,,unmatched_likely_post_2011_district
+539,Karnataka,Hassan,1776421.0,exact
+54,Uttarakhand,Rudra Prayag,242285.0,exact
+540,Karnataka,Haveri,1597668.0,exact
+541,Karnataka,Kodagu,554519.0,exact
+542,Karnataka,Kolar,1536401.0,exact
+543,Karnataka,Koppal,1389920.0,exact
+544,Karnataka,Mandya,1805769.0,exact
+545,Karnataka,Mysuru,,unmatched_likely_post_2011_district
+546,Karnataka,Raichur,1928812.0,exact
+547,Karnataka,Shivamogga,1752753,fuzzy
+548,Karnataka,Tumakuru,2678980,fuzzy
+549,Karnataka,Udupi,1177361.0,exact
+55,Uttarakhand,Tehri Garhwal,618931.0,exact
+550,Karnataka,Uttara Kannada,1437169.0,exact
+551,Goa,North Goa,818008.0,exact
+552,Goa,South Goa,640537.0,exact
+553,Lakshadweep,Lakshadweep District,64473,fuzzy
+554,Kerala,Alappuzha,2127789.0,exact
+555,Kerala,Ernakulam,3282388.0,exact
+556,Kerala,Idukki,1108974.0,exact
+557,Kerala,Kannur,2523003.0,exact
+558,Kerala,Kasaragod,1307375.0,exact
+559,Kerala,Kollam,2635375.0,exact
+56,Uttarakhand,Udam Singh Nagar,1648902,fuzzy
+560,Kerala,Kottayam,1974551.0,exact
+561,Kerala,Kozhikode,3086293.0,exact
+562,Kerala,Malappuram,4112920.0,exact
+563,Kerala,Palakkad,2809934.0,exact
+564,Kerala,Pathanamthitta,1197412.0,exact
+565,Kerala,Thiruvananthapuram,3301427.0,exact
+566,Kerala,Thrissur,3121200.0,exact
+567,Kerala,Wayanad,817420.0,exact
+568,Tamil Nadu,Chennai,4646732.0,exact
+569,Tamil Nadu,Coimbatore,3458045.0,exact
+57,Uttarakhand,Uttar Kashi,330086.0,exact
+570,Tamil Nadu,Cuddalore,2605914.0,exact
+571,Tamil Nadu,Dharmapuri,1506843.0,exact
+572,Tamil Nadu,Dindigul,2159775.0,exact
+573,Tamil Nadu,Erode,2251744.0,exact
+574,Tamil Nadu,Kanchipuram,3998252,fuzzy
+575,Tamil Nadu,Kanniyakumari,1870374.0,exact
+576,Tamil Nadu,Karur,1064493.0,exact
+577,Tamil Nadu,Krishnagiri,1879809.0,exact
+578,Tamil Nadu,Madurai,3038252.0,exact
+579,Tamil Nadu,Nagapattinam,1616450.0,exact
+58,Haryana,Ambala,1128350.0,exact
+580,Tamil Nadu,Namakkal,1726601.0,exact
+581,Tamil Nadu,Perambalur,565223.0,exact
+582,Tamil Nadu,Pudukkottai,1618345.0,exact
+583,Tamil Nadu,Ramanathapuram,1353445.0,exact
+584,Tamil Nadu,Salem,3482056.0,exact
+585,Tamil Nadu,Sivaganga,1339101.0,exact
+586,Tamil Nadu,Thanjavur,2405890.0,exact
+587,Tamil Nadu,The Nilgiris,735394.0,exact
+588,Tamil Nadu,Theni,1245899.0,exact
+589,Tamil Nadu,Thiruvallur,3728104.0,exact
+59,Haryana,Bhiwani,1634445.0,exact
+590,Tamil Nadu,Thiruvarur,1264277.0,exact
+591,Tamil Nadu,Tiruchirappalli,2722290.0,exact
+592,Tamil Nadu,Tirunelveli,3077233.0,exact
+593,Tamil Nadu,Tiruvannamalai,2464875.0,exact
+594,Tamil Nadu,Tuticorin,,unmatched_likely_post_2011_district
+595,Tamil Nadu,Vellore,3936331.0,exact
+596,Tamil Nadu,Villupuram,3458873,fuzzy
+597,Tamil Nadu,Virudhunagar,1942288.0,exact
+598,Puducherry,Karaikal,200222,state_alias
+6,Jammu And Kashmir,Kargil,140802.0,exact
+60,Haryana,Faridabad,1809733.0,exact
+600,Puducherry,Pondicherry,950289,state_alias
+602,Andaman And Nicobar Islands,South Andamans,238142,fuzzy
+603,Andaman And Nicobar Islands,Nicobars,36842.0,exact
+604,Haryana,Nuh,,unmatched_likely_post_2011_district
+605,Punjab,Barnala,595527.0,exact
+606,Jharkhand,Khunti,531885.0,exact
+607,Jharkhand,Ramgarh,949443.0,exact
+608,Punjab,S.A.S Nagar,,unmatched_likely_post_2011_district
+609,Punjab,Tarn Taran,1119627.0,exact
+61,Haryana,Fatehabad,942011.0,exact
+610,Tamil Nadu,Ariyalur,754894.0,exact
+611,Bihar,Arwal,700843.0,exact
+612,Assam,Chirang,482162.0,exact
+613,Nagaland,Peren,95219.0,exact
+614,Nagaland,Kiphire,74004.0,exact
+615,Nagaland,Longleng,50484.0,exact
+616,Assam,Baksa,950075.0,exact
+617,Assam,Udalguri,831668.0,exact
+618,Assam,Kamrup Metro,1253938,fuzzy
+619,Haryana,Palwal,1042708.0,exact
+62,Haryana,Gurugram,,unmatched_likely_post_2011_district
+620,Jammu And Kashmir,Kishtwar,230696.0,exact
+621,Jammu And Kashmir,Ramban,283713.0,exact
+622,Jammu And Kashmir,Kulgam,424483.0,exact
+623,Jammu And Kashmir,Bandipora,392232,fuzzy
+624,Jammu And Kashmir,Samba,318898.0,exact
+625,Jammu And Kashmir,Shopian,266215,fuzzy
+626,Jammu And Kashmir,Ganderbal,297446.0,exact
+627,Jammu And Kashmir,Reasi,314667.0,exact
+628,Arunachal Pradesh,Anjaw,21167.0,exact
+629,Rajasthan,Pratapgarh,867848.0,exact
+63,Haryana,Hisar,1743931.0,exact
+630,Karnataka,Chikkaballapura,1255104.0,exact
+631,Karnataka,Ramanagara,1082636.0,exact
+632,Andaman And Nicobar Islands,North And Middle Andaman,105597.0,exact
+633,Uttar Pradesh,Kasganj,,unmatched_likely_post_2011_district
+634,Tamil Nadu,Tiruppur,2479052.0,exact
+635,Karnataka,Yadgir,1174271.0,exact
+636,Chhattisgarh,Bijapur,255230.0,exact
+637,Chhattisgarh,Narayanpur,139820.0,exact
+638,Madhya Pradesh,Singrauli,1178273.0,exact
+639,Madhya Pradesh,Alirajpur,728999.0,exact
+64,Haryana,Jhajjar,958405.0,exact
+640,Uttar Pradesh,Amethi,,unmatched_likely_post_2011_district
+641,Gujarat,Tapi,807022.0,exact
+642,Chhattisgarh,Sukma,,unmatched_likely_post_2011_district
+643,Chhattisgarh,Kondagaon,,unmatched_likely_post_2011_district
+644,Chhattisgarh,Baloda Bazar,,unmatched_likely_post_2011_district
+645,Chhattisgarh,Gariyaband,,unmatched_likely_post_2011_district
+646,Chhattisgarh,Balod,,unmatched_likely_post_2011_district
+647,Chhattisgarh,Mungeli,,unmatched_likely_post_2011_district
+648,Chhattisgarh,Surajpur,,unmatched_likely_post_2011_district
+649,Chhattisgarh,Balrampur Ramanujganj,,unmatched_likely_post_2011_district
+65,Haryana,Jind,1334152.0,exact
+650,Chhattisgarh,Bemetara,,unmatched_likely_post_2011_district
+651,Punjab,Fazilka,,unmatched_likely_post_2011_district
+652,Tripura,Khowai,,unmatched_likely_post_2011_district
+653,Tripura,Sepahijala,,unmatched_likely_post_2011_district
+654,Tripura,Gomati,,unmatched_likely_post_2011_district
+655,Tripura,Unakoti,,unmatched_likely_post_2011_district
+656,Meghalaya,North Garo Hills,142334,fuzzy
+657,Meghalaya,East Jaintia Hills,395124,fuzzy
+658,Meghalaya,South West Khasi Hills,383461,fuzzy
+659,Uttar Pradesh,Sambhal,,unmatched_likely_post_2011_district
+66,Haryana,Kaithal,1074304.0,exact
+660,Uttar Pradesh,Shamli,,unmatched_likely_post_2011_district
+661,Uttar Pradesh,Hapur,1104285,fuzzy
+662,Punjab,Pathankot,,unmatched_likely_post_2011_district
+663,Meghalaya,South West Garo Hills,142334,fuzzy
+664,West Bengal,Alipurduar,,unmatched_likely_post_2011_district
+665,Maharashtra,Palghar,,unmatched_likely_post_2011_district
+666,Arunachal Pradesh,Longding,,unmatched_likely_post_2011_district
+667,Madhya Pradesh,Agar-Malwa,,unmatched_likely_post_2011_district
+668,Gujarat,Chhotaudepur,,unmatched_likely_post_2011_district
+669,Gujarat,Mahisagar,,unmatched_likely_post_2011_district
+67,Haryana,Karnal,1505324.0,exact
+670,Delhi,South East,2292958,fuzzy
+671,Madhya Pradesh,Shahdara,,unmatched_likely_post_2011_district
+672,Gujarat,Arvalli,,unmatched_likely_post_2011_district
+673,Gujarat,Morbi,,unmatched_likely_post_2011_district
+674,Gujarat,Devbhumi Dwarka,,unmatched_likely_post_2011_district
+675,Gujarat,Gir Somnath,,unmatched_likely_post_2011_district
+676,Gujarat,Botad,,unmatched_likely_post_2011_district
+677,Gujarat,Kra Daadi,,unmatched_likely_post_2011_district
+678,Arunachal Pradesh,Namsai,,unmatched_likely_post_2011_district
+679,Arunachal Pradesh,Siang,,unmatched_likely_post_2011_district
+68,Haryana,Kurukshetra,964655.0,exact
+680,Gujarat,Nirmal,,unmatched_likely_post_2011_district
+681,Arunachal Pradesh,Jagitial,,unmatched_likely_post_2011_district
+682,Arunachal Pradesh,Peddapalli,,unmatched_likely_post_2011_district
+683,Arunachal Pradesh,Rajanna Sircilla,,unmatched_likely_post_2011_district
+685,Telangana,Kamareddy,5296741,fuzzy
+687,Telangana,Jayashankar Bhupalapally,,unmatched_likely_post_2011_district
+688,Telangana,Mahabubabad,4053028,fuzzy
+69,Haryana,Mahendragarh,922088.0,exact
+690,Telangana,Bhadradri Kothagudem,,unmatched_likely_post_2011_district
+691,,Sangareddy,,unmatched_likely_post_2011_district
+692,Telangana,Siddipet,,unmatched_likely_post_2011_district
+693,,Wanaparthy,,unmatched_likely_post_2011_district
+694,Telangana,Nagarkurnool,4053463,fuzzy
+695,Telangana,Jogulamba Gadwal,,unmatched_likely_post_2011_district
+696,,Suryapet,,unmatched_likely_post_2011_district
+697,Telangana,Yadadri Bhuvanagiri,,unmatched_likely_post_2011_district
+698,Telangana,Vikarabad,,unmatched_likely_post_2011_district
+699,Telangana,Kumuram Bheem Asifabad,,unmatched_likely_post_2011_district
+7,Jammu And Kashmir,Kathua,616435.0,exact
+70,Haryana,Panchkula,561293.0,exact
+701,Telangana,Charki Dadri,,unmatched_likely_post_2011_district
+702,Telangana,Kalimpong,,unmatched_likely_post_2011_district
+703,West Bengal,Jhargram,,unmatched_likely_post_2011_district
+704,West Bengal,Paschim Bardhaman,,unmatched_likely_post_2011_district
+705,Assam,Biswanath,,unmatched_likely_post_2011_district
+706,Assam,Majuli,,unmatched_likely_post_2011_district
+707,Assam,South Salmara Mancachar,,unmatched_likely_post_2011_district
+708,Assam,Charaideo,,unmatched_likely_post_2011_district
+709,Assam,Hojai,,unmatched_likely_post_2011_district
+71,Haryana,Panipat,1205437.0,exact
+710,Assam,West Karbi Anglong,956313,fuzzy
+711,West Bengal,Kakching,,unmatched_likely_post_2011_district
+712,West Bengal,Kangpokpi,,unmatched_likely_post_2011_district
+713,Assam,Jiribam,,unmatched_likely_post_2011_district
+714,Assam,Noney,,unmatched_likely_post_2011_district
+715,Assam,Pherzawl,,unmatched_likely_post_2011_district
+716,Assam,Tengnoupal,,unmatched_likely_post_2011_district
+717,Assam,Kamjong,,unmatched_likely_post_2011_district
+718,Assam,Kamle,,unmatched_likely_post_2011_district
+719,Manipur,Lower Siang,,unmatched_likely_post_2011_district
+72,Haryana,Rewari,900332.0,exact
+720,Manipur,Mulugu,,unmatched_likely_post_2011_district
+721,Manipur,Narayanpet,,unmatched_likely_post_2011_district
+722,Manipur,Niwari,,unmatched_likely_post_2011_district
+723,Manipur,Pakke Kessang,,unmatched_likely_post_2011_district
+724,Manipur,Leparada,,unmatched_likely_post_2011_district
+725,Manipur,Shi Yomi,,unmatched_likely_post_2011_district
+726,Arunachal Pradesh,Hnahthial,,unmatched_likely_post_2011_district
+727,Arunachal Pradesh,Saitual,,unmatched_likely_post_2011_district
+728,Telangana,Khawzawl,,unmatched_likely_post_2011_district
+729,Telangana,Kallakurichi,,unmatched_likely_post_2011_district
+73,Haryana,Rohtak,1061204.0,exact
+730,Madhya Pradesh,Chengalpattu,,unmatched_likely_post_2011_district
+731,Arunachal Pradesh,Ranipet,,unmatched_likely_post_2011_district
+732,Arunachal Pradesh,Tirupathur,,unmatched_likely_post_2011_district
+733,Arunachal Pradesh,Tenkasi,,unmatched_likely_post_2011_district
+734,Mizoram,Gaurela Pendra Marwahi,,unmatched_likely_post_2011_district
+737,Mizoram,Malerkotla,,unmatched_likely_post_2011_district
+738,Mizoram,Vijayanagar,,unmatched_likely_post_2011_district
+739,Tamil Nadu,Bajali,,unmatched_likely_post_2011_district
+74,Haryana,Sirsa,1295189.0,exact
+740,Tamil Nadu,Eastern West Khasi Hills,,unmatched_likely_post_2011_district
+741,Tamil Nadu,Pakyong,,unmatched_likely_post_2011_district
+742,Tamil Nadu,Soreng,,unmatched_likely_post_2011_district
+743,Tamil Nadu,Parvathipuram Manyam,,unmatched_likely_post_2011_district
+744,Chhattisgarh,Anakapalli,,unmatched_likely_post_2011_district
+745,,Alluri Sitharama Raju,,unmatched_likely_post_2011_district
+746,,Kakinada,,unmatched_likely_post_2011_district
+747,Punjab,Konaseema,,unmatched_likely_post_2011_district
+748,Karnataka,Eluru,,unmatched_likely_post_2011_district
+749,Andhra Pradesh,Ntr,,unmatched_likely_post_2011_district
+75,Haryana,Sonipat,1450001.0,exact
+750,Meghalaya,Bapatla,,unmatched_likely_post_2011_district
+751,Sikkim,Palnadu,,unmatched_likely_post_2011_district
+752,Andhra Pradesh,Tirupati,,unmatched_likely_post_2011_district
+753,Andhra Pradesh,Annamayya,,unmatched_likely_post_2011_district
+754,Andhra Pradesh,Sri Sathya Sai,,unmatched_likely_post_2011_district
+755,Andhra Pradesh,Nandyal,,unmatched_likely_post_2011_district
+756,Andhra Pradesh,Tamulpur,,unmatched_likely_post_2011_district
+759,Andhra Pradesh,Khairgarh Chhuikhadan Gandai,,unmatched_likely_post_2011_district
+76,Haryana,Yamunanagar,1214205.0,exact
+760,Andhra Pradesh,Manendragarh Chirimiri Bharatpur,,unmatched_likely_post_2011_district
+761,Andhra Pradesh,Mohla Manpur Ambagarh Chouki,,unmatched_likely_post_2011_district
+762,Andhra Pradesh,Sakti,,unmatched_likely_post_2011_district
+763,Andhra Pradesh,Sarangarh Bilaigarh,,unmatched_likely_post_2011_district
+77,Delhi,Central,582320,state_alias
+770,Andhra Pradesh,Khairthal-Tijara,,unmatched_likely_post_2011_district
+78,Delhi,East,1709346,state_alias
+783,Rajasthan,Jaipur (Gramin),,unmatched_likely_post_2011_district
+79,Delhi,New Delhi,142004,state_alias
+8,Jammu And Kashmir,Kupwara,870354.0,exact
+80,Delhi,North,887978,state_alias
+81,Delhi,North East,2241624,state_alias
+82,Delhi,North West,3656539,state_alias
+83,Delhi,South,2731929,state_alias
+84,Delhi,South West,2292958,state_alias
+85,Delhi,West,2543243,state_alias
+86,Rajasthan,Ajmer,2583052.0,exact
+87,Rajasthan,Alwar,3674179.0,exact
+88,Rajasthan,Banswara,1797485.0,exact
+89,Rajasthan,Baran,1222755.0,exact
+9,Jammu And Kashmir,Leh Ladakh,133487.0,exact
+90,Rajasthan,Barmer,2603751.0,exact
+91,Rajasthan,Bharatpur,2548462.0,exact
+92,Rajasthan,Bhilwara,2408523.0,exact
+93,Rajasthan,Bikaner,2363937.0,exact
+94,Rajasthan,Bundi,1110906.0,exact
+95,Rajasthan,Chittorgarh,1544338,fuzzy
+96,Rajasthan,Churu,2039547.0,exact
+97,Rajasthan,Dausa,1634409.0,exact
+98,Rajasthan,Dholpur,1206516,fuzzy
+99,Rajasthan,Dungarpur,1388552.0,exact

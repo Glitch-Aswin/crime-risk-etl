@@ -14,6 +14,7 @@ paths:
   warehouse_db: "warehouse/crime_risk.duckdb"
   district_crosswalk: "reference/district_crosswalk.csv"
   crime_category_map: "reference/crime_category_map.csv"
+  district_population: "reference/district_population_2011.csv"
 
 tiering:
   method: "quantile"   # 'quantile' | 'kmeans'

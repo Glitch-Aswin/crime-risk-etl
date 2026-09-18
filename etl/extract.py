@@ -45,6 +45,17 @@ def load_dataset(name: str, raw_dir: Path = RAW_DIR) -> pd.DataFrame:
     return df
 
 
+REFERENCE_DIR = Path(__file__).resolve().parent.parent / "reference"
+POPULATION_PATH = REFERENCE_DIR / "district_population_2011.csv"
+
+
+def load_population(path: Path = POPULATION_PATH) -> pd.DataFrame:
+    """Load the pre-built district population reference (Census 2011,
+    matched to NCRB district_code -- see
+    reference/build_population_reference.py for how it's built)."""
+    return pd.read_csv(path, dtype={"district_code": str})
+
+
 def load_women_datasets(raw_dir: Path = RAW_DIR) -> list[pd.DataFrame]:
     """Load both crimes-against-women eras (2016 + 2017-onwards) as
     separate wide dataframes. Kept separate (not concatenated) because the
