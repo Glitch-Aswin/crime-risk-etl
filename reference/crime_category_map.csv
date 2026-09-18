@@ -1,0 +1,8 @@
+source_column,era,canonical_category
+rioting,ipc_2016,rioting
+rioting_communal_religious,ipc_2017_onwards,rioting
+rioting_caste_conflict,ipc_2017_onwards,rioting
+rioting_land_property_dispute,ipc_2017_onwards,rioting
+rape,ipc_2016,rape
+rape_women_above_18,women_2017_onwards,rape
+rape_girls_below_18,women_2017_onwards,rape

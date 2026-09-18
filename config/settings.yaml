@@ -1,0 +1,20 @@
+data_gov_in:
+  api_key_env_var: DATA_GOV_IN_API_KEY
+  base_url: "https://api.data.gov.in/resource"
+  resources:
+    ipc_2016: ""               # resource ID, fill in once identified
+    ipc_2017_onwards: ""
+    women_2016: ""
+    women_2017_onwards: ""
+
+paths:
+  raw_dir: "data/raw"
+  interim_dir: "data/interim"
+  processed_dir: "data/processed"
+  warehouse_db: "warehouse/crime_risk.duckdb"
+  district_crosswalk: "reference/district_crosswalk.csv"
+  crime_category_map: "reference/crime_category_map.csv"
+
+tiering:
+  method: "quantile"   # 'quantile' | 'kmeans'
+  min_population: 100000  # exclude smaller districts from rate-based tiering
