@@ -7,3 +7,5 @@ data/interim/
 data/processed/
 warehouse/*.duckdb
 .ipynb_checkpoints/
+dashboard/frontend/node_modules/
+dashboard/frontend/dist/
