@@ -294,6 +294,17 @@ district codes don't align with NCRB's).
       managed Python 3.12) to actually run the pipeline and test suite
       rather than just eyeballing the code.
 
+- [x] **Phase 7 — Dashboard (v1)**: `dashboard/` — FastAPI backend
+      (`dashboard/backend/main.py`) reading `warehouse/crime_risk.duckdb`
+      directly, React frontend (`dashboard/frontend/`) with three views:
+      district rankings (filterable/sortable), a per-district drill-down
+      with a rate-over-time trend chart, and a quantile-vs-k-means method
+      comparison. Verified end to end with a headless-Chromium driver —
+      all views render with real data, no console errors. See
+      `dashboard/README.md` for how to run both halves. **No map view
+      yet** — needs district-level GeoJSON boundaries matched to
+      `district_code`, a separate sourcing problem, tracked as v2.
+
 - [ ] **Phase 8 — Extend to Crimes Against Children**: not started, not
       currently planned — reassess after Phase 5/6 are done.
 
