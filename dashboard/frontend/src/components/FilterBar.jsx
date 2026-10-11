@@ -10,9 +10,9 @@ export default function FilterBar({
   const set = (key) => (e) => onChange({ ...filters, [key]: e.target.value });
 
   return (
-    <div style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center", marginBottom: 20 }}>
+    <div className="filters">
       <label>
-        <div className="muted" style={{ fontSize: 12, marginBottom: 4 }}>Dataset</div>
+        <div>Dataset</div>
         <select value={filters.dataset} onChange={set("dataset")}>
           <option value="women">Crimes against women</option>
           <option value="ipc">General IPC crimes</option>
@@ -20,7 +20,7 @@ export default function FilterBar({
       </label>
 
       <label>
-        <div className="muted" style={{ fontSize: 12, marginBottom: 4 }}>Crime category</div>
+        <div>Crime category</div>
         <select value={filters.crime_category} onChange={set("crime_category")}>
           {meta.crime_categories.map((c) => (
             <option key={c} value={c}>{c.replaceAll("_", " ")}</option>
@@ -29,7 +29,7 @@ export default function FilterBar({
       </label>
 
       <label>
-        <div className="muted" style={{ fontSize: 12, marginBottom: 4 }}>Year</div>
+        <div>Year</div>
         <select value={filters.year} onChange={set("year")}>
           {meta.years.map((y) => (
             <option key={y} value={y}>{y}</option>
@@ -39,7 +39,7 @@ export default function FilterBar({
 
       {showMethod && (
         <label>
-          <div className="muted" style={{ fontSize: 12, marginBottom: 4 }}>Tiering method</div>
+          <div>Tiering method</div>
           <select value={filters.method} onChange={set("method")}>
             <option value="quantile">Quantile (state-relative)</option>
             <option value="kmeans">K-means (national)</option>
@@ -49,7 +49,7 @@ export default function FilterBar({
 
       {showState && (
         <label>
-          <div className="muted" style={{ fontSize: 12, marginBottom: 4 }}>State</div>
+          <div>State</div>
           <select value={filters.state ?? ""} onChange={set("state")}>
             <option value="">All states</option>
             {meta.states.map((s) => (

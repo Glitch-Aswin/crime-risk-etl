@@ -1,4 +1,5 @@
-const BASE_URL = "http://localhost:8000";
+// Set VITE_API_URL at build time when the API is hosted somewhere else.
+const BASE_URL = import.meta.env.VITE_API_URL ?? "http://localhost:8000";
 
 async function get(path, params = {}) {
   const query = new URLSearchParams(
