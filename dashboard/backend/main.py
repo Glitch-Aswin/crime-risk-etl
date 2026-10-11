@@ -1,23 +1,27 @@
 """FastAPI backend for the crime-risk dashboard.
 
-Reads directly from the DuckDB warehouse produced by `etl.pipeline`
-(warehouse/crime_risk.duckdb) -- no separate copy of the data, this is a
-thin read layer over fact_crime / fact_crime_risk. A fresh read-only
-connection is opened per request rather than shared, since DuckDB
-connections aren't meant to be used concurrently across threads and
-uvicorn's threadpool can call sync handlers from multiple threads.
+Reads fact_crime / fact_crime_risk from Delta tables on Databricks (written
+by `etl.pipeline` when CRIME_DELTA_TARGET is set) through a SQL warehouse --
+a thin read layer, no local copy of the data. A fresh connection is opened
+per request rather than shared, since uvicorn's threadpool can call sync
+handlers from multiple threads.
+
+Connection settings come from environment variables (or a .env file):
+DATABRICKS_SERVER_HOSTNAME, DATABRICKS_HTTP_PATH, DATABRICKS_TOKEN, and
+optionally DATABRICKS_CATALOG / DATABRICKS_SCHEMA (default workspace.default).
 """
 
+import os
 from contextlib import contextmanager
-from pathlib import Path
 
-import duckdb
 import numpy as np
 import pandas as pd
+from databricks import sql
+from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
-DB_PATH = Path(__file__).resolve().parent.parent.parent / "warehouse" / "crime_risk.duckdb"
+load_dotenv()
 
 
 def records(df: pd.DataFrame) -> list[dict]:
@@ -35,19 +39,52 @@ app = FastAPI(title="Crime Risk Dashboard API")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # vite dev server
+    # Comma-separated list; defaults to the vite dev server.
+    allow_origins=os.environ.get("CORS_ALLOW_ORIGINS", "http://localhost:5173").split(","),
     allow_methods=["GET"],
     allow_headers=["*"],
 )
 
 
+class _Result:
+    """Minimal stand-in for a DuckDB result so the endpoints below read the
+    same: .fetchall() for plain rows, .df() for a DataFrame."""
+
+    def __init__(self, cursor):
+        self._rows = [tuple(r) for r in cursor.fetchall()]
+        self._columns = [d[0] for d in cursor.description]
+
+    def fetchall(self):
+        return self._rows
+
+    def df(self) -> pd.DataFrame:
+        return pd.DataFrame(self._rows, columns=self._columns)
+
+
+class _Connection:
+    def __init__(self, raw):
+        self._raw = raw
+
+    def execute(self, query: str, params: list | None = None) -> _Result:
+        with self._raw.cursor() as cursor:
+            cursor.execute(query, params)
+            return _Result(cursor)
+
+
 @contextmanager
 def get_con():
-    con = duckdb.connect(str(DB_PATH), read_only=True)
+    # catalog/schema let the queries below use bare table names.
+    raw = sql.connect(
+        server_hostname=os.environ["DATABRICKS_SERVER_HOSTNAME"],
+        http_path=os.environ["DATABRICKS_HTTP_PATH"],
+        access_token=os.environ["DATABRICKS_TOKEN"],
+        catalog=os.environ.get("DATABRICKS_CATALOG", "workspace"),
+        schema=os.environ.get("DATABRICKS_SCHEMA", "default"),
+    )
     try:
-        yield con
+        yield _Connection(raw)
     finally:
-        con.close()
+        raw.close()
 
 
 @app.get("/api/meta")

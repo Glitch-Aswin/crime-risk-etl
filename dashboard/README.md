@@ -1,14 +1,19 @@
 # Dashboard
 
-A read-only web UI over the `warehouse/crime_risk.duckdb` output of
-`etl.pipeline` — three views: district rankings (filterable/sortable),
+A read-only web UI over the `fact_crime` / `fact_crime_risk` Delta tables
+that `etl.pipeline` writes on Databricks (this branch; `main` reads the
+local DuckDB file) — three views: district rankings (filterable/sortable),
 a per-district drill-down with a rate-over-time trend chart, and a
 quantile-vs-k-means method comparison.
 
-Run `uv run python -m etl.pipeline` from the repo root first so the
-warehouse file exists.
+The Databricks job (`run_delta` notebook) must have run first so the
+tables exist.
 
-## Backend (FastAPI, reads DuckDB directly)
+## Backend (FastAPI, queries a Databricks SQL warehouse)
+
+Copy `.env.example` to `.env` and fill in the `DATABRICKS_*` values: the
+SQL warehouse's server hostname and HTTP path (warehouse -> Connection
+details) and an access token. Never put these in the frontend.
 
 ```bash
 cd .. # repo root, if not already there
