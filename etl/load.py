@@ -1,4 +1,5 @@
-"""Load stage: write tidy tables into the DuckDB warehouse."""
+"""Load stage: write tidy tables into the DuckDB warehouse, and optionally
+as Delta tables when running on Databricks."""
 
 from pathlib import Path
 
@@ -21,3 +22,22 @@ def load_to_warehouse(df: pd.DataFrame, table_name: str, db_path: str) -> None:
         con.unregister("df_view")
     finally:
         con.close()
+
+
+def load_to_delta(df: pd.DataFrame, table_name: str, target: str, spark=None) -> None:
+    """Overwrite Delta table `<target>.<table_name>` with `df`, where target
+    is "catalog.schema" (e.g. "workspace.default"). Needs a Spark session,
+    so it only works inside a Databricks notebook/job process; pyspark is
+    imported lazily so local runs never need it. Pass `spark` explicitly
+    to override session lookup (used by tests)."""
+    if spark is None:
+        from pyspark.sql import SparkSession
+
+        spark = SparkSession.getActiveSession() or SparkSession.builder.getOrCreate()
+    (
+        spark.createDataFrame(df)
+        .write.format("delta")
+        .mode("overwrite")
+        .option("overwriteSchema", "true")
+        .saveAsTable(f"{target}.{table_name}")
+    )

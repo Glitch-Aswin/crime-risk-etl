@@ -1,7 +1,7 @@
 import duckdb
 import pandas as pd
 
-from etl.load import load_to_warehouse
+from etl.load import load_to_delta, load_to_warehouse
 
 
 def test_load_to_warehouse_writes_fact_crime(tmp_path):
@@ -48,3 +48,47 @@ def test_load_to_warehouse_replaces_existing_table(tmp_path):
     con.close()
     assert len(result) == 1
     assert result["district_code"].iloc[0] == "2"
+
+
+class _FakeWriter:
+    def __init__(self, calls):
+        self.calls = calls
+
+    def format(self, fmt):
+        self.calls.append(("format", fmt))
+        return self
+
+    def mode(self, mode):
+        self.calls.append(("mode", mode))
+        return self
+
+    def option(self, key, value):
+        self.calls.append(("option", key, value))
+        return self
+
+    def saveAsTable(self, name):
+        self.calls.append(("saveAsTable", name))
+
+
+class _FakeSparkDF:
+    def __init__(self, calls):
+        self.write = _FakeWriter(calls)
+
+
+class _FakeSpark:
+    def __init__(self):
+        self.calls = []
+
+    def createDataFrame(self, df):
+        self.calls.append(("createDataFrame", len(df)))
+        return _FakeSparkDF(self.calls)
+
+
+def test_load_to_delta_overwrites_target_table():
+    spark = _FakeSpark()
+    df = pd.DataFrame({"district_code": ["1"], "year": [2020]})
+    load_to_delta(df, "fact_crime", "workspace.default", spark=spark)
+    assert ("createDataFrame", 1) in spark.calls
+    assert ("format", "delta") in spark.calls
+    assert ("mode", "overwrite") in spark.calls
+    assert ("saveAsTable", "workspace.default.fact_crime") in spark.calls

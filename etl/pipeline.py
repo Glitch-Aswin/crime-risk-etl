@@ -3,6 +3,7 @@
 Run with: python -m etl.pipeline
 """
 
+import os
 from pathlib import Path
 from typing import Callable
 
@@ -10,7 +11,7 @@ import pandas as pd
 import yaml
 
 from etl.extract import load_population, load_women_datasets, load_ipc_datasets
-from etl.load import load_to_warehouse
+from etl.load import load_to_delta, load_to_warehouse
 from etl.transform import (
     combine_datasets,
     join_population,
@@ -97,6 +98,13 @@ def run() -> None:
     db_path = str(PROJECT_ROOT / paths["warehouse_db"])
     load_to_warehouse(featured, "fact_crime", db_path)
     load_to_warehouse(combined_risk, "fact_crime_risk", db_path)
+
+    # Opt-in Delta output for Databricks: set CRIME_DELTA_TARGET to
+    # "catalog.schema". Unset (the default) leaves local runs DuckDB-only.
+    delta_target = os.environ.get("CRIME_DELTA_TARGET")
+    if delta_target:
+        load_to_delta(featured, "fact_crime", delta_target)
+        load_to_delta(combined_risk, "fact_crime_risk", delta_target)
 
 
 if __name__ == "__main__":
